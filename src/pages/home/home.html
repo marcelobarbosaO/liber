@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle ion-button><ion-icon name="menu"></ion-icon></button>
+    <ion-title>Livros Liber</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor="let book of books" (click)="bookSelected(book)" style="max-width: 100%; margin:10px 0">
+    <img [src]="book.foto" height="200" width="auto"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{book.titulo}}
+        </ion-card-title>
+      <p>
+        {{book.descricao}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+   <ion-fab right bottom>
+     <button ion-fab >
+       <ion-icon name="search"></ion-icon>
+     </button>
+   </ion-fab>
+</ion-content>
