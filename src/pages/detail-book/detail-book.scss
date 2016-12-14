@@ -1,3 +1,73 @@
-page-detail-book {
-
+#imagem_detail{
+    text-align: center;
+    height: 250px;
+    position: relative
 }
+#imagem_detail img{
+    max-height: 250px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 21px #666;
+}
+#botoes_detail{
+    width: 100vw;
+    position: fixed;
+    bottom: 0;left: 0;
+}
+#botoes_detail button{ 
+    width: 50%;
+    float: left;
+    text-align: center;
+    padding: 12px 0px !important;
+    margin: 0 !important;
+    font-size: 1.3em;
+    height: auto !important;
+    min-height: auto !important;
+}
+
+#botoes_detail button ion-icon{
+    padding-right: 16px;
+    position: relative;
+    top: 2px;
+}
+#content_livro_detail{
+    position: relative;
+    padding-bottom: 65px;
+}
+#content_livro_detail h1{ padding-right: 117px;}
+.status_detail{
+    position: absolute;
+    top: 20px;
+    right: 0;
+    background: #2b3845;
+    padding: 10px 15px 10px 15px;
+    color:#2b3845;
+    width: 100px;
+    height: 60px;
+}
+.status_detail b{ color:#FFF; position: absolute; top: 50%; transform: translateY(-50%); left: 10px; width: calc(100% - 20px);}
+.status_detail:before{
+    content: "";
+    position: absolute;
+    left: -28px;
+    top:0px;
+    width: 0; 
+    height: 0; 
+    border-top: 0;
+    border-bottom: 32px solid transparent; 
+    border-right: 29px solid currentColor; 
+}
+.status_detail:after{
+    content: "";
+    position: absolute;
+    left: -28px;
+    bottom: 0px;
+    width: 0;
+    height: 0;
+    border-top: 32px solid transparent;
+    border-bottom: 0;
+    border-right: 29px solid currentColor;
+}
+.user_book{ padding: 10px 0}
+.user_book img{ margin-right: 15px }
+.user_book img, .user_book h3{ display: inline-block}

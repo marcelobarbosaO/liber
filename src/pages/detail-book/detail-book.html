@@ -1,20 +1,31 @@
 
 <ion-header>
   <ion-navbar>
-    <ion-title>{{livro.titulo}}</ion-title>
+    <ion-title>Detalhes do Livro</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-card style="max-width: 100%; margin:10px 0">
-    <img [src]="livro.foto" height="200" width="auto"/>
-    <ion-card-content>
-      <ion-card-title>
-        {{livro.titulo}}
-        </ion-card-title>
-      <p>
-        {{livro.descricao}}
-      </p>
-    </ion-card-content>
-  </ion-card>
+<ion-content>
+  <div id="imagem_detail">
+      <div class="blurEffect img_blur" [ngStyle]="{'background-image' : 'url(' + livro.foto + ')'}"></div>
+      <img [src]="livro.foto" alt="IMAGEM DO LIVRO"/>
+  </div>
+  <div id="content_livro_detail" padding>
+    
+    <h1>{{livro.titulo}}</h1>
+    <p>{{livro.descricao}}</p>
+    <span class="status_detail"><b>{{livro.status}}</b></span>
+    <div class="divider"></div>
+
+    <div class="user_book">
+      <img *ngIf="livro.user_foto != null" [src]="livro.user_foto" width="100" height="100" class="circled-image"/>
+      <img *ngIf="livro.user_foto == null" src="http://tr3.cbsistatic.com/fly/bundles/techrepubliccore/images/icons/standard/icon-user-default.png" width="100" height="100"/>
+      <h3>{{livro.usuario}}</h3>
+    </div>
+
+  </div>
+  <div id="botoes_detail">
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect bgLiber white-text"><ion-icon name="thumbs-down"></ion-icon>Denunciar</button>
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect green white-text" (click)="chatOpen(livro)"><ion-icon name="chatboxes"></ion-icon>Chat</button>
+  </div>
 </ion-content>

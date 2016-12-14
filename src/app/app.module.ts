@@ -15,6 +15,7 @@ import { MensagensPage } from '../pages/mensagens/mensagens';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { DetailBookPage } from '../pages/detail-book/detail-book';
 import { CadastroPage } from '../pages/cadastro/cadastro';
+import { ChatPage } from '../pages/chat/chat';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { CadastroPage } from '../pages/cadastro/cadastro';
     MensagensPage,
     PerfilPage,
     CadastroPage,
+    ChatPage,
     DetailBookPage
   ],
   imports: [
@@ -48,6 +50,7 @@ import { CadastroPage } from '../pages/cadastro/cadastro';
     MensagensPage,
     PerfilPage,
     CadastroPage,
+    ChatPage,
     DetailBookPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]

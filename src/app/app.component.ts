@@ -22,8 +22,8 @@ import { UserService } from '../providers/user-service';
 })
 export class MyApp implements OnInit{
   @ViewChild(Nav) nav: Nav;
-    //public rootPage: any = LoginPage;
-    public rootPage: any = HomePage;
+    public rootPage: any = LoginPage;
+    //public rootPage: any = HomePage;
     public usuario: any;
 
   constructor(platform: Platform, private userService: UserService, public alert: AlertController) {
@@ -45,7 +45,7 @@ export class MyApp implements OnInit{
   }
 
   ngOnInit(){
-     //this.autentica();
+     this.autentica();
   }
 
   autentica(){

@@ -32,14 +32,14 @@ export class HomePage implements OnInit{
 
   constructor(public navCtrl: NavController, private navParams: NavParams, private livrosService: LivrosService, public alert: AlertController, public loading: LoadingController) {
       this.checkNetwork();
-      //if(Network.connection !== Connection.NONE){
+      if(Network.connection !== Connection.NONE){
         this.listaLivros();
-      //} else {
-         // if(this.showMessage == false){
-           // this.showMessage = true;
-//this.presentAlert("Voce esta offline");
-          //}
-      //}
+      } else {
+          if(this.showMessage == false){
+            this.showMessage = true;
+            this.presentAlert("Voce esta offline");
+          }
+      }
 
       this.options = {
           slidesPerView:2,
@@ -123,6 +123,8 @@ export class HomePage implements OnInit{
             //for(var key in data){
               //this.resultBusca.push(data[key]);
             //}
+            var btn :any = document.querySelector(".opacityApp");
+            btn.classList.remove("hide");
             document.getElementById("resultSearch").classList.add("showDiv");
         });
         console.log(this.resultBusca);
@@ -132,9 +134,15 @@ export class HomePage implements OnInit{
       document.querySelector("#searchDiv").classList.add("showDiv");
       document.querySelector("#searchDiv").classList.add("animacao");
       document.querySelector("#searchDiv").classList.add("width-full");
+      setTimeout(function(){
+        var button:any = document.querySelector("#searchInput");
+        button.focus();
+      }, 450);
   }
 
   closeSearch(){
+      var btn :any = document.querySelector(".opacityApp");
+      btn.classList.add("hide");
       document.getElementById("resultSearch").classList.remove("showDiv");
       document.querySelector("#searchDiv").classList.remove("width-full");
       setTimeout(function(){

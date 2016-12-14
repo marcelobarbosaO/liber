@@ -52,6 +52,7 @@ $colors: (
 .toolbar-title{color:#FFF !important;}
 .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default,
 .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{ color:#fff !important}
+.img_blur{ position: absolute; width: 100%; height: 100%; top: 0; left:0; opacity: 0.7;}
 .blurEffect{
     -webkit-filter: blur(8px);
     -moz-filter: blur(8px);
@@ -63,9 +64,23 @@ $colors: (
 .white-text{ color: #fff; }
 .black-text{ color: #000; }
 .liber-text{ color: #2b3845; }
+.green{ background: #4CAF50}
 .btn-rounded{ border-radius: 24px; padding: 0px 30px;}
 .center-align{text-align: center;}
+.hide{ display: none; }
+.divider{
+  width: 100%; height: 1px; background: #ddd; clear: both;
+}
 
+.opacityApp{ 
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+ }
 /*page-home.show-page{
    -webkit-transition: all ease-in 0.5s;
         transition: all ease-in 0.5s;
