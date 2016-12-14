@@ -26,7 +26,11 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  morecolor: (
+    base: #2b3845,
+    contrast: #fff
+  )
 );
 
 
@@ -40,9 +44,33 @@ $colors: (
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
+#userMenuDetail img{ width: 40%}
+.circled-image{border-radius: 50%;}
+.mdl-list__item{ min-height: 40px !important; padding: 0 16px !important; margin-bottom: 15px}
+.mdl-list__item ion-icon{ margin-right: 20px; width: 40px; height: 40px; line-height: 40px; background: #fff; border-radius: 34px; text-align: center}
+.toolbar-background{ background-color:#2b3845 !important;}
+.toolbar-title{color:#FFF !important;}
+.bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default,
+.bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{ color:#fff !important}
+.blurEffect{
+    -webkit-filter: blur(8px);
+    -moz-filter: blur(8px);
+    -o-filter: blur(8px);
+    -ms-filter: blur(8px);
+    filter: blur(8px);
+}
+.bgLiber{ background: #2b3845;}
+.white-text{ color: #fff; }
+.black-text{ color: #000; }
+.liber-text{ color: #2b3845; }
+.btn-rounded{ border-radius: 24px; padding: 0px 30px;}
+.center-align{text-align: center;}
 
-
-
+/*page-home.show-page{
+   -webkit-transition: all ease-in 0.5s;
+        transition: all ease-in 0.5s;
+  transform: rotateY(-360deg)
+}*/
 
 // App Windows Variables
 // --------------------------------------------------

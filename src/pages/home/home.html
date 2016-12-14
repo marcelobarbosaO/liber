@@ -1,25 +1,113 @@
 <ion-header>
-  <ion-navbar>
-    <button menuToggle ion-button><ion-icon name="menu"></ion-icon></button>
-    <ion-title>Livros Liber</ion-title>
+  <ion-navbar primary>
+     <ion-buttons left>
+        <button menuToggle ion-button><ion-icon name="menu"></ion-icon></button>
+     </ion-buttons>
+
+      <ion-title text-center><img src="./assets/imgs/logo-dark.png" style=""></ion-title>
+   
+
+    <ion-buttons right>
+      <button ion-button end *ngIf="visualizacaoLivro" (click)="mudaVisualizacao()"><i class="material-icons">sort</i></button>
+      <button ion-button right *ngIf="!visualizacaoLivro" (click)="mudaVisualizacao()"><i class="material-icons">dashboard</i></button>
+      <button ion-button (click)="openSearch()"><ion-icon name="search"></ion-icon></button>
+    </ion-buttons>
+
   </ion-navbar>
+  <div id="searchDiv">
+      <!--<ion-icon name="search"></ion-icon>-->
+       <i class="material-icons">search</i>
+       <form id="formSearch">
+        <input type="text" id="searchInput" placeholder="Digite sua busca" />
+       </form>
+       <div id="resultSearch">
+            <h5 text-center style="margin-bottom: 15px">Resultados da Busca</h5>
+             <ion-slides *ngIf="resultBusca.length > 0" [options]="options" #mySlider>
+                <ion-slide *ngFor="let result of resultBusca" (click)="bookSelected(result)">
+                  <img [src]="result.foto" />
+                  <p>{{result.titulo}}</p>
+                </ion-slide>
+            </ion-slides>
+            <p textcenter *ngIf="resultBusca.length < 1">Nenhum Resultado Encontrado</p>
+       </div>
+
+        <i class="material-icons" (click)="closeSearch()">clear</i>
+  </div>
 </ion-header>
 
-<ion-content padding>
-  <ion-card *ngFor="let book of books" (click)="bookSelected(book)" style="max-width: 100%; margin:10px 0">
-    <img [src]="book.foto" height="200" width="auto"/>
-    <ion-card-content>
-      <ion-card-title>
-        {{book.titulo}}
-        </ion-card-title>
-      <p>
-        {{book.descricao}}
-      </p>
-    </ion-card-content>
-  </ion-card>
-   <ion-fab right bottom>
-     <button ion-fab >
-       <ion-icon name="search"></ion-icon>
-     </button>
-   </ion-fab>
+
+<ion-content padding #container>
+  <ion-slides pager *ngIf="showSlides">
+    <!--<ion-slide style="background-color: green">
+      <h2>Slide 1</h2>
+    </ion-slide>
+    <ion-slide style="background-color: blue">
+      <h2>Slide 2</h2>
+    </ion-slide>-->
+    <ion-slide style="background-color: #2b3845">
+      <h2 class="white-text">Bem Vindo ao Liber</h2>
+      <button class="mdl-button mdl-js-button mdl-js-ripple-effect bgLiber white-text btn-rounded" (click)="closeSlides()">Ok</button>
+    </ion-slide>
+  </ion-slides>
+
+  <div id="geral_home" *ngIf=!showSlides>
+      <div id="destaques">
+          <img src="https://4.bp.blogspot.com/-oFFxPxp2LdM/V7zhMoa6uaI/AAAAAAAAEfA/e3pEfyB_pRIaBC3yf52jSwv8Ui0oUbFrwCLcB/s320/Brasileiro%2B%252B%25C2%25AE%2Bot%252B%25C3%25ADrio%2B%25281%2529.png" />
+          <h4>Veja os melhores descontos dos nossos parceiros</h4>
+          <!-- Flat button with ripple -->
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
+            Ver Mais
+          </button>
+      </div>
+      <div id="conteudoIndex">
+            <h2 text-center>Todos os Livros</h2>
+            <div class="mdl-grid listaLivros" *ngIf="visualizacaoLivro">
+              <div class="mdl-cell mdl-cell--2-col animated zoomIn" *ngFor="let book of books; let i = index" [ngStyle]="{'animation-delay' : '0.' + (i * 2) + 's'}" >
+                  <div class="demo-card-wide mdl-card mdl-shadow--2dp" (click)="bookSelected(book)" >
+                    <div class="tipo_livro">
+                      <span>{{book.status}}</span>
+                    </div>
+                      <div class="mdl-card__title" style="position:relative">
+                        <div class="blurEffect img_blur" [ngStyle]="{'background-image' : 'url(' + book.foto + ')'}"></div>
+                          <img [src]="imageDefault" [lazyLoad]=book.foto [scrollTarget]="container.getScrollElement()" [errorImage]="errorImage" [offset]="100" border="0" alt="">
+                      </div>
+                      <div class="mdl-card__supporting-text">
+                          <p style="margin:0; height: 28px; overflow: hidden; color:#000; font-weight: bold;">{{book.titulo}}</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+            <div *ngIf="!visualizacaoLivro">
+                  <ul class="demo-list-icon mdl-list listaLivros">
+                    <li class="mdl-list__item animated zoomIn" (click)="bookSelected(book2)" *ngFor="let book2 of books; let ii = index" [ngStyle]="{'animation-delay' : '0.' + (ii * 2) + 's'}">
+                        <div style="height: 141px; width: 91px; text-align:center; position: relative; margin-right:15px;">
+                          <img [src]="imageDefault" [lazyLoad]=book2.foto [errorImage]="errorImage" border="0" [offset]="100" [scrollTarget]="container.getScrollElement()" alt="" height="141px" style="width: auto; max-width: 91px;">
+                        </div>
+                        <div class="texto_box">
+                            <h4 class=" liber-text">
+                              <b>{{book2.titulo}}</b>
+                            </h4>
+                            <p class="liber-text">{{book2.descricao}}</p>
+                        </div>
+                        <span class="tipo_livro_2">{{book2.status}}</span>
+                         <!--<img *ngIf="book2.user_foto != null" [src]="imageDefault" [lazyLoad]=book2.user_foto [scrollTarget]="container.getScrollElement()" [errorImage]="errorImage" [offset]="100"/>-->
+                    </li>
+                  </ul>
+            </div>
+      </div>
+    </div>
+
+
 </ion-content>
+
+<!--<div id="animationExplode" class="hideDiv" [ngStyle]="{'top': eixoY + 'px', 'left': eixoX + 'px'}"></div>-->
+
+<!--<div id="searchDiv">
+      <h2 text-center>
+        Buscar Livro
+        <button (click)="closeSearch()">
+          <i class="material-icons" right>clear</i>
+        </button>
+      </h2>
+</div>-->

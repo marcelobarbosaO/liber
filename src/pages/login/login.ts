@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController} from 'ionic-angular';
 import { Facebook } from 'ionic-native';
 import firebase from 'firebase';
 
-import { HomePage } from '../home/home';
+//import { HomePage } from '../home/home';
+
+
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
-
-  constructor(public navCtrl: NavController) {}
+  public emailUser : any;
+  public idUser : any;
+  constructor(public navCtrl: NavController, public alert: AlertController) {}
 
   ionViewDidLoad() {
     console.log('Hello LoginPage Page');
@@ -24,16 +27,24 @@ export class LoginPage {
 
         firebase.auth().signInWithCredential(facebookCredential).then((success) => {
             //console.log("Firebase success: " + JSON.stringify(success));
-            console.log("logou entra na home page");
-            this.navCtrl.setRoot(HomePage);
-            //jogar usuario pra tela inicial home do app
+            
         }).catch((error) => {
-            console.log("Firebase failure: " + JSON.stringify(error));
+            //console.log("Firebase failure: " + JSON.stringify(error));
+            this.presentAlert("Houve um erro ao lhe autenticar.");
         });
 
     }).catch((error) => {
-      console.log(error)
+        this.presentAlert("Houve um erro ao logar com facebook.");
     });
+  }
+
+  presentAlert(message) {
+    let alerta = this.alert.create({
+      title: 'Ops...',
+      subTitle: message,
+      buttons: ['fechar']
+    });
+    alerta.present();
   }
 
 }

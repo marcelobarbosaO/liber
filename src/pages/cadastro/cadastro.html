@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>Cadastre-se no Liber</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="mdl-grid">
+       <div class="mdl-cell mdl-cell--12-col center-align">
+          <img [src]="user.photoURL" class="circled-image" />
+       </div>
+       <form action="#" id="cadForm">
+          <div class="mdl-cell mdl-cell--12-col">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="nome" id="nome" value="{{user.displayName}}" required/>
+                <label class="mdl-textfield__label" for="nome">Nome...</label>
+              </div>
+          </div>
+          <div class="mdl-cell mdl-cell--12-col">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="email" name="email" id="email" value="{{user.email}}" required/>
+                <label class="mdl-textfield__label" for="email">Email...</label>
+              </div>
+          </div>
+          <div class="mdl-cell mdl-cell--12-col">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="tel" name="tel" id="fone" required [textMask]="{mask: mask}"/>
+                <label class="mdl-textfield__label" for="fone">Telefone...</label>
+              </div>
+          </div>
+          <div class="mdl-cell mdl-cell--12-col center-align">
+              <button class="mdl-button mdl-js-button mdl-js-ripple-effect" type="submit">
+                Cadastrar
+              </button>
+          </div>
+        </form>
+    </div>
+</ion-content>

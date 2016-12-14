@@ -7,3 +7,185 @@ ion-card img {
     max-width: 100% !important;
     margin: 10px 0 !important;
 }
+.mdl-card__title{ position: relative; background: #ccc;}
+.mdl-card__title img{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+}
+.demo-card-wide{position: relative; overflow: inherit;}
+.demo-card-wide.mdl-card {
+  width: auto;
+  margin-bottom: 10px
+}
+.mdl-list__item{ padding: 0 !important; box-shadow: 2px 2px 10px #ccc;}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+.fab{ background: #202325}
+.img_blur{ position: absolute; width: 100%; height: 100%; top: 0; left:0; opacity: 0.7;}
+.mdl-card__title img{ box-shadow: 0px 0px 10px 0px #666;}
+.tipo_livro{
+    position: absolute;
+    top: 6px;
+    left: -10px;
+    padding: 10px 15px 10px 25px;
+    background: rgba(43, 56, 69, 0.87);
+    color: #FFF;
+    z-index: 1;
+}
+.tipo_livro:before{
+    content: "";
+    border-left: 10px solid transparent;
+    border-right: 0px solid transparent;
+    border-top: 10px solid #202325;
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+}
+.tipo_livro_2{
+    position: absolute;
+    top: 0;
+    right: 0px;
+    background: rgba(43, 56, 69, 0.87);
+    color: #FFF;
+    padding: 10px 15px;
+}
+.texto_box{
+    display: block;
+    padding-top: 35px;
+}
+img.ng2-lazyloaded {
+    animation: fadein .5s;
+}
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+#loadingHome{
+    width: 100vw;
+    height: calc(100vh - 200px);
+    position: absolute;
+    top: 200px;
+    left: 0;
+    background: #f90;
+}
+#destaques{
+    width: 100vw;
+    height: 200px;
+    background: #2b3845;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+}
+#destaques img{
+    height: 96%;
+    position: relative;
+    top: 9px;
+    left: 20px;
+}
+#destaques h4{
+    color: #FFF;
+    padding-left: 27px;
+}
+#destaques button{ background: #e22a5d; color:#FFF; position: absolute; right: 10px; bottom: 10px; border-radius: 24px; height:auto; padding: 2px 26px;}
+#destaques:before{
+    content: ""; 
+    position: absolute; 
+    right: 0;
+    bottom: 0;
+    border-left: 100vw solid transparent;
+    border-right: 0px solid transparent;
+    border-bottom: 10vw solid #fff;
+}
+#conteudoIndex{ padding-top: 200px;}
+#animationExplode{
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    background: #fff;
+    z-index:999;
+    border-radius: 50%;
+}
+.animacao{
+        transition: 0.4s all cubic-bezier(0.52, 0.01, 0.54, 1.15);
+}
+#animationExplode.escale{
+    transform: scale(1500);
+    will-change: transform;
+}
+.hideDiv{ opacity: 0 !important; visibility: hidden !important;}
+.showDiv{ opacity: 1 !important; visibility: visible !important;}
+.showDisplay{ display: block !important}
+#searchDiv{
+    width: 100%;
+    position: absolute; 
+    top: 0;
+    //right: 0;
+    left:calc(100% - 36px); 
+    background: #2b3845; 
+    height: 100%;
+    line-height: 73px;
+    opacity: 1;
+    visibility: hidden;
+}
+#searchDiv i{padding: 1px 0 0 5px; color: #FFF;}
+#searchDiv i:last-child{ position: absolute; right: 10px; top: 50%; transform: translateY(-50%);}
+#searchDiv form{
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    left: 54px;
+    height: 60%;
+    transform: translateY(-50%);
+}
+#searchDiv input{ 
+    background: #2b3845;
+    border:0;
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    color: #FFF;
+}
+#searchDiv.width-full{
+    left:0;
+}
+#resultSearch{
+    width: 100%;
+    padding: 10px 10px 10px 0;
+    position: absolute;
+    top:100%;
+    left: 0;
+    background: #fff;
+    opacity: 0;
+    visibility: hidden;
+}
+#resultSearch p{
+    line-height: 28px !important;
+    font-size: 18px;
+    padding-top: 10px
+}
+.swiper-slide img{ height: 179px;}
+.swiper-container-horizontal > .swiper-pagination{bottom: -20px !important;}
+.swiper-container{padding-bottom: 40px;}
+ion-slides{
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.swiper-container{padding-bottom: 0px !important;}

@@ -1,9 +1,12 @@
 <ion-content>
-	<div class="container">
+	<div class="container" id="container_login">
 		<div class="logo">
-			<img src="./assets/imgs/logo.png"/>
+			<img src="./assets/imgs/logo_liber.png"/>
 		</div>
-		<button padding ion-button id="fb-login" (click)="facebookLogin()">Entrar com Facebook</button>
+		<!--<button padding ion-button id="fb-login" (click)="facebookLogin()">Entrar com Facebook</button>-->
+		<button (click)="facebookLogin()" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+  			Entrar com Facebook
+		</button>
 		<div class="card">
 		</div>
 	</div>
