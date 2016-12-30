@@ -1,0 +1,44 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span color="primary" showWhen="ios">Fechar</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>DETALHE DO ANUNCIO</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+  <div id="imagem_detail">
+      <div class="blurEffect img_blur" [ngStyle]="{'background-image' : 'url(' + livro.foto + ')'}"></div>
+      <img [src]="livro.foto" alt="IMAGEM DO LIVRO"/>
+  </div>
+  <div id="content_livro_detail" padding>
+    
+    <h1>{{livro.titulo}}</h1>
+    <p>{{livro.descricao}}</p>
+    <span class="status_detail"><b>{{livro.status}}</b></span>
+    <div class="divider"></div>
+    <ion-grid>
+        <ion-row>
+            <ion-col width-50 text-center>
+              <h5>Visualizações</h5>
+              <p><ion-icon style="padding-right: 20px" name="eye"></ion-icon>{{livro.views}}</p>
+              </ion-col>
+            <ion-col width-50 text-center>
+              <h5>Curtidas</h5>
+              <p><ion-icon style="padding-right: 20px" name="thumbs-up"></ion-icon>{{livro.curtidas}}</p>
+              </ion-col>
+        </ion-row>
+    </ion-grid>
+  </div>
+  <div id="botoes_detail">
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect bgLiber white-text"><ion-icon name="create"></ion-icon>Editar</button>
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect red white-text" (click)="deletarLivro(livro)"><ion-icon name="chatboxes"></ion-icon>Deletar</button>
+  </div>
+</ion-content>

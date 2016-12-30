@@ -1,3 +1,69 @@
 page-chat {
+    background: url('../assets/imgs/bg_chat.jpg') no-repeat center top;
+    background-size: cover;
+}
+.content-md{
+    background-color: transparent !important;
+}
+.mensagem{
+    width: 100vw;
+    padding: 15px;
+    position: relative
+}
+.adm_send, .user_send{ position: relative}
+.mensagem img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.mensagem p{
+    padding: 10px;
+    width: calc(100% - 70px);
+    position: relative;
+}
+.adm_send p::before{
+    content:"";
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: -15px;
+    bottom:0;
+    border-top: 15px solid transparent;
+    border-bottom: 0px solid transparent; 
+    border-right: 15px solid #FFF;
+}
+.user_send p::before{
+    content:"";
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: -15px;
+    bottom:0;
+    border-top: 15px solid transparent;
+    border-bottom: 0px solid transparent; 
+    border-left: 15px solid #2b3845;
+}
+.adm_send p{margin-left: 70px; background: #FFF;}
+.user_send p{background: #2b3845; color: #FFF;}
+.adm_send img{ position: absolute; bottom: 0; left: 0;}
+.user_send img{ position: absolute; bottom: 0; right: 0;}
 
+.input_sendMessage{
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    left: 0;background: #FFF;
+}
+.input_sendMessage input{
+    width: calc(100vw - 33px);
+    padding: 10px 0;
+}
+.input_sendMessage button{
+    background: #fff;
+    padding: 0;
+    font-size: 1.9rem;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
 }

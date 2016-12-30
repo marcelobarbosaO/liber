@@ -8,6 +8,9 @@ import {  AlertController } from 'ionic-angular';
 export class LivrosService {
   private data: any;
   private dataSearch: any;
+  public dataDenuncia: any;
+  public anuncios: any;
+  public removeLivro: any;
   //public fireAuth: any;
   //public userProfile: any;
 
@@ -19,12 +22,13 @@ export class LivrosService {
   }
 
 
-  loadLivros(){
+  loadLivros(id_user){
+    let search = JSON.stringify({id: id_user});
       if(this.data){
           return Promise.resolve(this.data);
       }
       return new Promise(resolve => {
-          this.http.get('http://liberapp.com.br/api/publicacoes').map(res => res.json()).subscribe(data => {
+          this.http.post('http://liberapp.com.br/api/publicacoes', search).map(res => res.json()).subscribe(data => {
             this.data = data;
             resolve(this.data);
           }, error => {
@@ -45,6 +49,53 @@ export class LivrosService {
             this.dataSearch = false;
           }, error => {
               this.presentAlert("Houve um erro ao fazer a busca");
+          });
+      });
+  }
+
+  sendDenuncia(id_user, id_livro, id_denuncia){
+        let search = JSON.stringify({livro_id: id_livro, user_id: id_user, denuncia_id: id_denuncia});
+        if(this.dataDenuncia){
+          return Promise.resolve(this.dataDenuncia);
+        }
+        return new Promise(resolve => {
+          this.http.post('http://liberapp.com.br/api/denunciar',search).map(res => res.json()).subscribe(dataDenuncia => {
+            this.dataDenuncia = dataDenuncia;
+            resolve(this.dataDenuncia);
+            this.dataDenuncia = false;
+          }, error => {
+              this.presentAlert("Houve um erro ao fazer a denuncia");
+          });
+      });
+  }
+
+  meusAnuncios(id_user){
+    let search = JSON.stringify({id: id_user});
+      if(this.anuncios){
+          return Promise.resolve(this.anuncios);
+      }
+      return new Promise(resolve => {
+          this.http.post('http://liberapp.com.br/api/meus_anuncios', search).map(res => res.json()).subscribe(anuncios => {
+            this.anuncios = anuncios;
+            resolve(this.anuncios);
+          }, error => {
+               this.presentAlert("Houve um erro ao recuperar a lista de livros");
+          });
+      });
+  }
+
+  removeAnuncio(id){
+        let search = JSON.stringify({id: id});
+        if(this.removeLivro){
+          return Promise.resolve(this.removeLivro);
+        }
+        return new Promise(resolve => {
+          this.http.post('http://liberapp.com.br/api/remove_livro', search).map(res => res.json()).subscribe(removeLivro => {
+            this.removeLivro = removeLivro;
+            resolve(this.removeLivro);
+            this.removeLivro = false;
+          }, error => {
+               this.presentAlert("Houve um erro ao remover o livro");
           });
       });
   }

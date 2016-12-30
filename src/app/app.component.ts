@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Nav, Platform, AlertController  } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { Keyboard, StatusBar, Splashscreen } from 'ionic-native';
 
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
@@ -39,6 +39,7 @@ export class MyApp implements OnInit{
         //StatusBar.styleDefault();
         //StatusBar.overlaysWebView(false);
         //StatusBar.styleLightContent();
+        Keyboard.disableScroll(true);
         StatusBar.hide()
         Splashscreen.hide();
     });
@@ -46,6 +47,10 @@ export class MyApp implements OnInit{
 
   ngOnInit(){
      this.autentica();
+    //define local storage para usar no ionic serve, remover em modo aplicativo
+    //var elementos = {logado: true, id_user: "3"};
+    //var cliente = JSON.stringify(elementos);
+    //window.localStorage.setItem('profile_logged', cliente);
   }
 
   autentica(){
@@ -62,6 +67,7 @@ export class MyApp implements OnInit{
             } else {
                 if(u_l != null && u_l != undefined){
                     var result = JSON.parse(u_l);
+                    //console.log(result.logado);
                     if(result.logado == true){
                         this.nav.setRoot(HomePage);//se ja tiver cadastrado vai pra home    
                     } else {
@@ -114,14 +120,17 @@ export class MyApp implements OnInit{
 
   validaUser(email, idUser){
       this.userService.validarUsuario(email, idUser).then(data => {
+          console.log("valida User :: ", data);
             if(data.status == true){
                 if(data.logado == true){
-                    var cliente = JSON.stringify({logado: true});
-                    window.localStorage.setItem('profile_logged', JSON.stringify(cliente));
+                    let id:any = data.user_id;
+                    var elementos = {logado: true, id_user: id};
+                    var cliente = JSON.stringify(elementos);
+                    window.localStorage.setItem('profile_logged', cliente);
                     this.nav.setRoot(HomePage);//jogar para tela inicial, pois ja possui cadastro
                 } else {
                     var cliente = JSON.stringify({logado: false});
-                    window.localStorage.setItem('profile_logged', JSON.stringify(cliente));
+                    window.localStorage.setItem('profile_logged', cliente);
                     this.nav.setRoot(CadastroPage);//jogar para tela de cadastro
                 }
             } else {

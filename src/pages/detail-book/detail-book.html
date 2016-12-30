@@ -19,13 +19,13 @@
 
     <div class="user_book">
       <img *ngIf="livro.user_foto != null" [src]="livro.user_foto" width="100" height="100" class="circled-image"/>
-      <img *ngIf="livro.user_foto == null" src="http://tr3.cbsistatic.com/fly/bundles/techrepubliccore/images/icons/standard/icon-user-default.png" width="100" height="100"/>
+      <img *ngIf="livro.user_foto == null" src="http://tr3.cbsistatic.com/fly/bundles/techrepubliccore/images/icons/standard/icon-user-default.png" width="100" height="100" class="circled-image"/>
       <h3>{{livro.usuario}}</h3>
     </div>
 
   </div>
   <div id="botoes_detail">
-    <button class="mdl-button mdl-js-button mdl-js-ripple-effect bgLiber white-text"><ion-icon name="thumbs-down"></ion-icon>Denunciar</button>
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect bgLiber white-text" (click)="denunciarLivro(livro)"><ion-icon name="thumbs-down"></ion-icon>Denunciar</button>
     <button class="mdl-button mdl-js-button mdl-js-ripple-effect green white-text" (click)="chatOpen(livro)"><ion-icon name="chatboxes"></ion-icon>Chat</button>
   </div>
 </ion-content>

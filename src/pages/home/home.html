@@ -4,7 +4,7 @@
         <button menuToggle ion-button><ion-icon name="menu"></ion-icon></button>
      </ion-buttons>
 
-      <ion-title text-center><img src="./assets/imgs/logo-dark.png" style=""></ion-title>
+      <ion-title text-center><img src="./assets/imgs/logo-dark.png"></ion-title>
    
 
     <ion-buttons right>
@@ -63,7 +63,7 @@
       <div id="conteudoIndex">
             <h2 text-center>Todos os Livros</h2>
             <div class="mdl-grid listaLivros" *ngIf="visualizacaoLivro">
-              <div class="mdl-cell mdl-cell--2-col animated zoomIn" *ngFor="let book of books; let i = index" [ngStyle]="{'animation-delay' : '0.' + (i * 2) + 's'}" >
+              <div class="mdl-cell mdl-cell--2-col animated zoomIn" *ngFor="let book of books; let i = index" [ngStyle]="{'animation-delay' :  ((i * 2) > 9) ? ((i*2)/10) + 's' : '0.'+(i*2)  + 's'}" >
                   <div class="demo-card-wide mdl-card mdl-shadow--2dp" (click)="bookSelected(book)" >
                     <div class="tipo_livro">
                       <span>{{book.status}}</span>

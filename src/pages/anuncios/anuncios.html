@@ -1,11 +1,20 @@
 <ion-header>
   <ion-navbar>
     <button menuToggle ion-button><ion-icon name="menu"></ion-icon></button>
-    <ion-title>anuncios</ion-title>
+    <ion-title>Meus Anúncios</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content #container>
+  <ion-list>
+      <ion-item class="animated zoomIn" *ngFor="let anuncio of anuncios; let i = index" [ngStyle]="{'animation-delay' :  ((i * 2) > 9) ? ((i*2)/10) + 's' : '0.'+(i*2)  + 's'}">
+          <ion-thumbnail item-left>
+              <img style="margin:0 auto" [src]=imageDefault [lazyLoad]=anuncio.foto [scrollTarget]="container.getScrollElement()" [errorImage]="errorImage" [offset]="100">
+          </ion-thumbnail>
+          <h2>{{anuncio.titulo}}</h2>
+          <p>{{anuncio.descricao}}</p>
+          <button ion-button clear item-right (click)="detailAnuncio(anuncio)">Ver Mais</button>
+      </ion-item>
+  </ion-list>
 </ion-content>

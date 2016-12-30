@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
-
 import { UserService } from '../../providers/user-service';
 
 import { HomePage } from '../home/home';
@@ -28,10 +27,21 @@ export class CadastroPage implements OnInit {
       let nome : any = document.getElementById("nome");
       let email : any = document.getElementById("email");
       let fone : any = document.getElementById("fone");
+      let scroll: any = document.querySelector(".scroll-content");
       form.addEventListener("submit", function(e){
           self.cadastrarUser(nome.value, email.value, fone.value);
           console.log(e);
       });
+
+      fone.addEventListener("focus", function(){
+          console.log("focus");
+          scroll.classList.add("moveTop");
+      });
+      fone.addEventListener("focusout", function(){
+          console.log("onfocusout");
+          scroll.classList.remove("moveTop");
+      });
+
   }
 
   cadastrarUser(nome, email, fone){

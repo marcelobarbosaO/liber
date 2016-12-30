@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { NavController, NavParams, AlertController, LoadingController, Slides } from 'ionic-angular';
+//import { NavController, NavParams, AlertController, LoadingController, Slides } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { Network } from 'ionic-native';
 
 import { LivrosService } from '../../providers/livros-service';
@@ -55,6 +56,7 @@ export class HomePage implements OnInit{
           let regex=/[^a-zA-Z 0-9]/g;
           if(regex.test(e.key) == false)
           if(inp.value != null && inp.value != "" && inp.value != undefined){
+              inp.value = "";
               self.searchLivro(inp.value);
           }
      });
@@ -70,11 +72,12 @@ export class HomePage implements OnInit{
   }
 
   listaLivros(){
+      let result = JSON.parse(this.user_d);
       this.loader = this.loading.create({
             content: 'Carregando, Aguarde...'
       });
       this.loader.present();
-      this.livrosService.loadLivros().then(data => {
+      this.livrosService.loadLivros(result.id_user).then(data => {
           for(var key in data){
             this.books.push(data[key]);
           }

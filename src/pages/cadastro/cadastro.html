@@ -4,12 +4,35 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding scroll=true>
     <div class="mdl-grid">
        <div class="mdl-cell mdl-cell--12-col center-align">
           <img [src]="user.photoURL" class="circled-image" />
        </div>
        <form action="#" id="cadForm">
+         <!--<ion-list>
+              <ion-item>
+                  <ion-label stacked>Nome</ion-label>
+                  <ion-input type="text" name="nome" value="{{user.displayName}}" id="nome" required></ion-input>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label stacked>Email</ion-label>
+                  <ion-input type="email" name="email" value="{{user.email}}" id="email" required></ion-input>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label stacked>Telefone</ion-label>
+                  <ion-input type="tel" name="fone" id="fone" required [textMask]="{mask: mask}"></ion-input>
+              </ion-item>
+         </ion-list>
+
+          <div class="mdl-cell mdl-cell--12-col center-align">
+              <button class="mdl-button mdl-js-button mdl-js-ripple-effect" type="submit">
+                Cadastrar
+              </button>
+          </div>-->
+
           <div class="mdl-cell mdl-cell--12-col">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" name="nome" id="nome" value="{{user.displayName}}" required/>
@@ -33,6 +56,7 @@
                 Cadastrar
               </button>
           </div>
+
         </form>
     </div>
 </ion-content>

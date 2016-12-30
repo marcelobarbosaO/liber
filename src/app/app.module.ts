@@ -10,6 +10,7 @@ import { LoginPage } from '../pages/login/login';
 import { AjudaPage } from '../pages/ajuda/ajuda';
 import { AnunciarPage } from '../pages/anunciar/anunciar';
 import { AnunciosPage } from '../pages/anuncios/anuncios';
+import { AnuncioDetailPage } from '../pages/anuncio-detail/anuncio-detail';
 import { ListaDesejoPage } from '../pages/lista-desejo/lista-desejo';
 import { MensagensPage } from '../pages/mensagens/mensagens';
 import { PerfilPage } from '../pages/perfil/perfil';
@@ -26,6 +27,7 @@ import { ChatPage } from '../pages/chat/chat';
     AjudaPage,
     AnunciarPage,
     AnunciosPage,
+    AnuncioDetailPage,
     ListaDesejoPage,
     MensagensPage,
     PerfilPage,
@@ -46,6 +48,7 @@ import { ChatPage } from '../pages/chat/chat';
     AjudaPage,
     AnunciarPage,
     AnunciosPage,
+    AnuncioDetailPage,
     ListaDesejoPage,
     MensagensPage,
     PerfilPage,

@@ -1,11 +1,29 @@
 <ion-header>
   <ion-navbar>
     <button menuToggle ion-button><ion-icon name="menu"></ion-icon></button>
-    <ion-title>lista-desejo</ion-title>
+    <ion-title>Minha Lista de Desejo</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-list>
+      <ion-item-sliding *ngFor="let lista of desejos">
+          <ion-item>
+              <h2>{{lista.titulo}}</h2>
+          </ion-item>
+          <ion-item-options side="right">
+              <button ion-button class="red" (click)="removeItem(lista.id)">
+                  <ion-icon name="trash"></ion-icon>
+                  Deletar
+              </button>
+          </ion-item-options>
+      </ion-item-sliding>
+  </ion-list>
 
+   <ion-fab bottom right>
+      <button ion-fab color="light" (click)="openModal()">
+          <ion-icon name="add" class="white-text"></ion-icon>
+      </button>
+   </ion-fab>
 </ion-content>
