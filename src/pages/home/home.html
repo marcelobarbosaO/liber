@@ -53,7 +53,7 @@
 
   <div id="geral_home" *ngIf=!showSlides>
       <div id="destaques">
-          <img src="https://4.bp.blogspot.com/-oFFxPxp2LdM/V7zhMoa6uaI/AAAAAAAAEfA/e3pEfyB_pRIaBC3yf52jSwv8Ui0oUbFrwCLcB/s320/Brasileiro%2B%252B%25C2%25AE%2Bot%252B%25C3%25ADrio%2B%25281%2529.png" />
+          <img src="./assets/imgs/img_livro_home.png" />
           <h4>Veja os melhores descontos dos nossos parceiros</h4>
           <!-- Flat button with ripple -->
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
@@ -61,9 +61,14 @@
           </button>
       </div>
       <div id="conteudoIndex">
+      <!--<button md-button>FLAT</button>
+      <button md-raised-button md-ripple md-tooltip="This is a tooltip!">RAISED</button>
+      <button md-raised-button md-ripple color="primary">PRIMARY RAISED</button>
+      <button md-raised-button md-ripple color="accent">ACCENT RAISED</button>-->
             <h2 text-center>Todos os Livros</h2>
             <div class="mdl-grid listaLivros" *ngIf="visualizacaoLivro">
-              <div class="mdl-cell mdl-cell--2-col animated zoomIn" *ngFor="let book of books; let i = index" [ngStyle]="{'animation-delay' :  ((i * 2) > 9) ? ((i*2)/10) + 's' : '0.'+(i*2)  + 's'}" >
+              <div class="mdl-cell mdl-cell--2-col" *ngFor="let book of books; let i = index" [ngStyle]="{'animation-delay' :  ((i * 2) > 9) ? ((i*2)/10) + 's' : '0.'+(i*2)  + 's'}" >
+                <!--<div class="mdl-cell mdl-cell-2-col animated zoomIn" *ngFor="let book of books; let i = index" [ngStyle]="{'animation-delay' :  ((i * 2) > 9) ? ((i*2)/10) + 's' : '0.'+(i*2)  + 's'}" >-->
                   <div class="demo-card-wide mdl-card mdl-shadow--2dp" (click)="bookSelected(book)" >
                     <div class="tipo_livro">
                       <span>{{book.status}}</span>
@@ -81,7 +86,8 @@
 
             <div *ngIf="!visualizacaoLivro">
                   <ul class="demo-list-icon mdl-list listaLivros">
-                    <li class="mdl-list__item animated zoomIn" (click)="bookSelected(book2)" *ngFor="let book2 of books; let ii = index" [ngStyle]="{'animation-delay' : '0.' + (ii * 2) + 's'}">
+                    <li class="mdl-list__item " (click)="bookSelected(book2)" *ngFor="let book2 of books; let ii = index" [ngStyle]="{'animation-delay' :  ((i * 2) > 9) ? ((i*2)/10) + 's' : '0.'+(i*2)  + 's'}">
+                      <!--<li class="mdl-list__item animated zoomIn" (click)="bookSelected(book2)" *ngFor="let book2 of books; let ii = index" [ngStyle]="{'animation-delay' :  ((i * 2) > 9) ? ((i*2)/10) + 's' : '0.'+(i*2)  + 's'}">-->
                         <div style="height: 141px; width: 91px; text-align:center; position: relative; margin-right:15px;">
                           <img [src]="imageDefault" [lazyLoad]=book2.foto [errorImage]="errorImage" border="0" [offset]="100" [scrollTarget]="container.getScrollElement()" alt="" height="141px" style="width: auto; max-width: 91px;">
                         </div>

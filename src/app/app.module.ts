@@ -18,6 +18,8 @@ import { DetailBookPage } from '../pages/detail-book/detail-book';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 import { ChatPage } from '../pages/chat/chat';
 
+import { MaterialModule } from '@angular/material';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { ChatPage } from '../pages/chat/chat';
   imports: [
     IonicModule.forRoot(MyApp),
     LazyLoadImageModule,
-    TextMaskModule
+    TextMaskModule,
+    MaterialModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

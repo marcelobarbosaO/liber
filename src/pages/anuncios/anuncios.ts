@@ -16,11 +16,11 @@ export class AnunciosPage {
   public anuncios:any = [];
 
   constructor(public navCtrl: NavController, private modal: ModalController, private alert: AlertController, private loading: LoadingController, private livrosService:LivrosService) {
-    this.meusAnuncios();
+      this.meusAnuncios();
   }
 
   ionViewDidLoad() {
-    console.log('Hello AnunciosPage Page');
+      console.log('Hello AnunciosPage Page');
   }
 
   meusAnuncios(){
@@ -29,22 +29,21 @@ export class AnunciosPage {
             content: 'Carregando, Aguarde...'
       });
       this.loader.present();
-      this.livrosService.meusAnuncios(result.id_user).then(data => {
-          this.anuncios = [];
-          if(data.status == 0){
-            for(var key in data){
-              if(data[key] != 0){
-                this.anuncios.push(data[key]);
-              }
-            }
-            this.loader.dismiss();
-          } else if(data.status == 1){
-            this.loader.dismiss();
-            this.presentAlert("Voceê ainda não possui anúncios cadastrados.");
-        } else {
+      this.livrosService.meusAnuncios(result.id_user).subscribe(data => {
+            this.anuncios = [];
+            if(data.status == 0){
+                this.anuncios = data.lista;
+                this.loader.dismiss();
+            } else if(data.status == 1){
+                this.loader.dismiss();
+                this.presentAlert("Ops...","Você ainda não possui anúncios cadastrados.");
+          } else {
+                this.loader.dismiss();
+                this.presentAlert("Ops...","Houve um erro ao trazer seus anuncios");
+          }
+      }, error =>{
           this.loader.dismiss();
-            this.presentAlert("Houve um erro ao trazer seus anuncios");
-        }
+          this.presentAlert("Ops...","Não foi possível se comunicar com o servidor. Tente mais tarde.");
       });
   }
 
@@ -53,13 +52,19 @@ export class AnunciosPage {
        mod.present();
   }
 
-  presentAlert(message) {
-    let alerta = this.alert.create({
-      title: 'Ops...',
-      subTitle: message,
-      buttons: ['fechar']
-    });
-    alerta.present();
+  
+  openModal(){
+      //abrir modal para cadastrar anuncio no liber
+      //usar camera pra bater foto
+  }
+
+  presentAlert(title, message) {
+      let alerta = this.alert.create({
+          title: title,
+          subTitle: message,
+          buttons: ['fechar']
+      });
+      alerta.present();
   }
 
 

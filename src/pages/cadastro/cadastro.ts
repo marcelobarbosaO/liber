@@ -46,28 +46,39 @@ export class CadastroPage implements OnInit {
 
   cadastrarUser(nome, email, fone){
       let user:any = window.localStorage.getItem('profile');
-      this.userService.cadUsuario(nome, email, fone, user.providerData[0].uid, user.photoURL).then(data => {
+      this.userService.cadUsuario(nome, email, fone, user.providerData[0].uid, user.photoURL).subscribe(data => {
           if(data.status == true){
-              var cliente = JSON.stringify({logado: true, first_acess: true});
-              window.localStorage.setItem('profile_logged', JSON.stringify(cliente));
+                var cliente = JSON.stringify({logado: true, first_acess: true});
+                window.localStorage.setItem('profile_logged', JSON.stringify(cliente));
 
-              let alerta = this.alert.create({
-                title: 'Cadastro Realizado',
-                subTitle: "Seu cadastro foi feito com sucesso. Agora desfrute de tudo que o Liber pode lhe oferecer.",
-                buttons: [
-                  {
-                    text: 'iniciar',
-                    handler: () =>{
-                        this.navCtrl.setRoot(HomePage);
-                    }
-                  }
-                  ]
-              });
-              alerta.present();
+                let alerta = this.alert.create({
+                    title: 'Cadastro Realizado',
+                    subTitle: "Seu cadastro foi feito com sucesso. Agora desfrute de tudo que o Liber pode lhe oferecer.",
+                    buttons: [
+                        {
+                            text: 'iniciar',
+                            handler: () =>{
+                                this.navCtrl.setRoot(HomePage);
+                            }
+                        }
+                    ]
+                });
+                alerta.present();
           } else {
-            //nao conseguiu cadastrar o user
+                this.presentAlert("Ops...","Houve um erro ao fazer seu cadastro.");
           }
+      }, error => {
+                this.presentAlert("Ops...","Houve um erro ao se comunicar com o servidor. Tente mais tarde.");
       });
   } 
+
+  presentAlert(title,message) {
+      let alerta = this.alert.create({
+          title: title,
+          subTitle: message,
+          buttons: ['fechar']
+      });
+      alerta.present();
+  }
 
 }

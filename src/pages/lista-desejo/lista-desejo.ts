@@ -27,16 +27,17 @@ export class ListaDesejoPage {
             content: 'Carregando, Aguarde...'
       });
       this.loader.present();
-      this.listaDesejoService.loadLista(result.id_user).then(data => {
-        if(data.status == 0){
-           this.desejos = [];
-          for(var key in data){
-            if(data[key] != 0){
-                this.desejos.push(data[key]);
-            }
+      this.listaDesejoService.loadLista(result.id_user).subscribe(data => {
+          if(data.status == 0){
+              this.desejos = [];
+              this.desejos = data.lista;
+          } else {
+              this.msgAlert("Ops...","Você ainda não tem nenhum item na lista de desejo.");
           }
-        }
           this.loader.dismiss();
+      }, error => {
+          this.loader.dismiss();
+          this.msgAlert("Ops...","Não foi possível se comunicar com o servidor. Tente mais tarde.");
       });
   }
 
@@ -70,30 +71,35 @@ export class ListaDesejoPage {
 
   saveDesejo(titulo){
       let result = JSON.parse(this.user_d);
-      this.listaDesejoService.saveDesejo(result.id_user, titulo).then(data => {
+      this.listaDesejoService.saveDesejo(result.id_user, titulo).subscribe(data => {
         if(data.status == 0){
-            this.msgAlert("Item salvo com sucesso");
+            this.msgAlert("Item Salvo", "Item armazenado com sucesso.");
             this.loadLista();
         } else {
-            this.msgAlert("Houve um erro ao salvar o item");
+            this.msgAlert("Ops...","Houve um erro ao salvar o item");
         }
+      }, error =>{
+            this.msgAlert("Ops...","Não foi possível se comunicar com o servidor. Tente mais tarde.");
       });
   }
 
   removeItem(id){
-      this.listaDesejoService.removeDesejo(id).then(data => {
+      this.listaDesejoService.removeDesejo(id).subscribe(data => {
         if(data.status == 0){
-            this.msgAlert("Item removido com sucesso");
+            this.msgAlert("Item removido com sucesso", "Esse item foi removido permanentemente.");
             this.loadLista();
         } else {
-            this.msgAlert("Houve um erro ao remover o item");
+            this.msgAlert("Ops...","Houve um erro ao remover o item");
         }
+      }, error => {
+          this.msgAlert("Ops...","Não foi possível se comunicar com o servidor. Tente mais tarde.");
       });
   }
 
-  msgAlert(message) {
+  msgAlert(title, message) {
     let alertt = this.alerta.create({
-      title: message,
+      title: title,
+      subTitle: message,
       buttons: ['fechar']
     });
     alertt.present();

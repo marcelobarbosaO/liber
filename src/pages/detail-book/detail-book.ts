@@ -6,72 +6,74 @@ import { ChatPage } from '../chat/chat';
 import { LivrosService } from '../../providers/livros-service';
 
 @Component({
-  selector: 'page-detail-book',
-  templateUrl: 'detail-book.html',
-  providers:[LivrosService]
+    selector: 'page-detail-book',
+    templateUrl: 'detail-book.html',
+    providers:[LivrosService]
 })
 export class DetailBookPage {
   public livro: any;
   constructor(public navCtrl: NavController, private livrosService:LivrosService, private alert: AlertController, private navParams: NavParams) {
-    this.livro = navParams.data;
+      this.livro = navParams.data;
   }
 
   ionViewDidLoad() {
-    console.log('Hello DetailBookPage Page');
+      console.log('Hello DetailBookPage Page');
   }
 
   chatOpen(book){
-    this.navCtrl.push(ChatPage, book);
+      this.navCtrl.push(ChatPage, book);
   }
 
   denunciarLivro(book){
-    let alerta = this.alert.create();
-    alerta.setTitle('Qual o motivo da denúncia?');
-    alerta.addInput({
-      type: 'radio',
-      label: 'Não é um anúncio de livro',
-      value: 'Não é um anúncio de livro',
-      checked: true
-    });
-    alerta.addInput({
-      type: 'radio',
-      label: 'Atos de Repudialismo',
-      value: 'Atos de Repudialismo',
-    });
-    alerta.addInput({
-      type: 'radio',
-      label: 'Está me incomodando',
-      value: 'Está me incomodando',
-    });
-    alerta.addButton('Cancelar');
-    alerta.addButton({
-      text: 'Enviar',
-      handler: data => {
-        this.sendDenuncia(data);
-      }
-    });
-    alerta.present();
-
+      let alerta = this.alert.create();
+      alerta.setTitle('Qual o motivo da denúncia?');
+      alerta.addInput({
+          type: 'radio',
+          label: 'Não é um anúncio de livro',
+          value: 'Não é um anúncio de livro',
+          checked: true
+      });
+      alerta.addInput({
+          type: 'radio',
+          label: 'Atos de Repudialismo',
+          value: 'Atos de Repudialismo'
+      });
+      alerta.addInput({
+          type: 'radio',
+          label: 'Está me incomodando',
+          value: 'Está me incomodando'
+      });
+      alerta.addButton('Cancelar');
+      alerta.addButton({
+          text: 'Enviar',
+          handler: data => {
+            this.sendDenuncia(data);
+          }
+      });
+      alerta.present();
   }
 
   sendDenuncia(result){
-    var user_atual = window.localStorage.getItem('profile_logged');
-    let user_detail = JSON.parse(user_atual);
-    console.log("RESULTADO:: ",result);
-    this.livrosService.sendDenuncia(user_detail.id_user,this.livro.id, result).then(data => {
-       if(data.status == 0){
-          this.alertaMsg('Denuncia feita com sucesso');
-       } else {
-         if(data.status == 1){
-            this.alertaMsg('Você já denunciou essa publicação');
-         }
-      }
-    });
+      var user_atual = window.localStorage.getItem('profile_logged');
+      let user_detail = JSON.parse(user_atual);
+      console.log("RESULTADO:: ",result);
+      this.livrosService.sendDenuncia(user_detail.id_user,this.livro.id, result).subscribe(data => {
+          if(data.status == 0){
+              this.alertaMsg('Denuncia Realizada', "Sua denúncia foi feita com sucesso. Aguarde nossa supervisão.");
+          } else {
+              if(data.status == 1){
+                  this.alertaMsg("Ops...",'Você já denunciou essa publicação');
+              }
+          }
+      }, error =>{
+          this.alertaMsg("Ops...","Não foi possível se comunicar com o servidor. Tente mais tarde.");
+      });
   }
 
-  alertaMsg(mensagem){
+  alertaMsg(title, mensagem){
     let alerta = this.alert.create({
-      title: mensagem,
+      title: title,
+      subTitle: mensagem,
       buttons: ['fechar']
     });
     alerta.present();
